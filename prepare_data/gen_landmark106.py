@@ -94,7 +94,7 @@ def gen_landmark_for_one_image(size, idx, img, landmark_save_dir, landmarks, bas
         dir_y = mouth_cy - eye_cy
         init_rot = 90 - math.atan2(dir_y, dir_x)/math.pi*180
 		
-    cur_angle = npr.randint(int(config.min_rot_angle - init_rot),int(config.max_rot_angle - init_rot)+1)
+    
     try_num = 0
     force_accept = 0
 	
@@ -103,6 +103,7 @@ def gen_landmark_for_one_image(size, idx, img, landmark_save_dir, landmarks, bas
         if try_num > base_num*1000:
             force_accept = 1
             break
+        cur_angle = npr.randint(int(config.min_rot_angle - init_rot),int(config.max_rot_angle - init_rot)+1)
         rot_landmark_x,rot_landmark_y = image_processing.rotateLandmark106(cx,cy,landmark_x,landmark_y, cur_angle,1)
         rot_max_x = max(rot_landmark_x)
         rot_min_x = min(rot_landmark_x)
